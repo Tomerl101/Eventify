@@ -4,8 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-// const sport = require('./routes/sport');
-// const db = require('./db');
+const eventify = require('./routes/eventify.routes');
+const db = require('./db');
 import * as auth_ctl from './controller/auth.controller';
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use('/eventify', eventify);
+app.use('/eventify', eventify);
 
 //error handling middelware
 // app.use(function (err, req, res, next) {
