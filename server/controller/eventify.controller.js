@@ -1,4 +1,6 @@
 import request from 'request';
+import configs from '../configs';
+// import { parseToken } from '../utils/parseToken';
 const User = require('../models/user.model');
 import { Event } from '../models/event.model';
 
@@ -7,17 +9,34 @@ export const getUserEvents = (req, res, next) => {
 
     User.findOne({ user_id }).populate('events').exec((err, events) => {
         if (err) return res.status(404).json({ error: 'data not found' })
-        res.status(400).json(events)
+        res.status(200).json(events)
     });
 }
 
-export const geEventById = (req, res, next) => {
-    const { event_id = null } = req.body;
+export const getEventPlaylists = (req, res, next) => {
+    const { token, event_id } = req.body;
+    // Event.find({ event_id }, (err, event) => {
+    //     if (err) return res.status(404).json({ error: 'data not found' })
+    //     res.json(event);
+    // })
 
-    Event.find({ event_id }, (err, event) => {
-        if (err) return res.status(404).json({ error: 'data not found' })
-        res.json(event);
-    })
+    var options = {
+        url: `${configs.SPOTIFY_URL}me/playlists`,
+        auth: { bearer: token },
+        json: true
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            return res.status(500).json({ error });
+        }
+
+        if (response.statusCode == 401) {
+            console.log('token expired');
+            return res.redirect('/');
+        }
+        res.json(body);
+    });
 }
 
 export const getPlaylist = (req, res, next) => {

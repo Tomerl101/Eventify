@@ -16,14 +16,15 @@
     "spotify-web-api-node": "4.0.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node index.js",
+    "test": "nodemon index1.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
-    "@babel/core": "^7.0.0-rc.1",
+    "@babel/core": "^7.2.2",
     "@babel/node": "^7.0.0-rc.1",
-    "@babel/preset-env": "^7.0.0-rc.1"
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/register": "^7.0.0"
   },
   "author": "Tomer Lotan, Noa Eylon",
   "license": "ISC"
