@@ -1,6 +1,7 @@
 class ApiError extends Error {
-  constructor() {
-    super()
+  constructor(message) {
+    super();
+    this.message = message;
   }
 
   static get NotFoundError() {
@@ -19,10 +20,10 @@ class ApiError extends Error {
     }
   }
 
-  static get ServerError() {
+  get ServerError() {
     return {
       name: 'SERVER ERROR',
-      message: 'Internal error',
+      message: this.message,
       status: 500
     }
   }

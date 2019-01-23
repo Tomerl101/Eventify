@@ -7,6 +7,7 @@ router.post('/getUserEvents', eventify_ctl.getUserEvents);
 router.post('/getEventPlaylists', eventify_ctl.getEventPlaylists);
 router.post('/getPlaylistById', eventify_ctl.getPlaylistById);
 router.post('/deleteEventById', eventify_ctl.deleteEventById);
+router.post('/createEvent', eventify_ctl.createEvent);
 
 /**TODO:
  * - create event
