@@ -36,18 +36,18 @@ app.use(function (req, res, next) {
   next();
 });
 
-//error handling middelware
-//catch error 401 (token expired)
-// app.use(function (err, req, res, next) {
-//   const { status, name, message } = err;
-//   res.status(err.status);
-//   res.json({ status, name, message });
-// });
-
 app.use('/eventify', eventify);
 
 app.all('*', (req, res) => {
   res.redirect('/');
+});
+
+// error handling middelware
+// catch error 401 (token expired)
+app.use(function (err, req, res, next) {
+  const { status, name, message } = err;
+  res.status(err.status);
+  res.json({ status, name, message });
 });
 
 app.listen(configs.PORT, () => {

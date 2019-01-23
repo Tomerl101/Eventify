@@ -87,6 +87,7 @@ export function callback(req, res) {
 export function refreshToken(req, res) {
 
   // requesting access token from refresh token
+  //TODO: get refresh token from db
   const refresh_token = req.query.refresh_token;
   const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
