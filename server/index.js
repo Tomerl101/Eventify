@@ -1,13 +1,10 @@
-
-// require("@babel/register");
-// require("@babel/polyfill");
 import configs from './configs';
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const eventify = require('./routes/eventify.routes');
-const db = require('./db');
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import eventify from './routes/eventify.routes';
+import db from './db';
 import * as auth_ctl from './controller/auth.controller';
 import { parseToken } from './utils/parseToken';
 

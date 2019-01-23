@@ -57,7 +57,6 @@ export function callback(req, res) {
 
         const options = {
           url: 'https://api.spotify.com/v1/me',
-          // url: 'http://localhost:5500/index1.js',
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };

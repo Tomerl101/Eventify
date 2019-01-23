@@ -29,5 +29,4 @@ export default class SpotifyApi {
       })
     })
   }
-  // async get
 }

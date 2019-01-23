@@ -8,11 +8,8 @@ router.post('/getEventPlaylists', eventify_ctl.getEventPlaylists);
 router.post('/getPlaylistById', eventify_ctl.getPlaylistById);
 router.post('/deleteEventById', eventify_ctl.deleteEventById);
 
-// router.post('/', eventify_ctl.createEvent);
-// router.get('/:playlist', eventify_ctl.findPlaylistById);
-// router.delete('/:id', eventify_ctl.deleteEvent);
-
 /**TODO:
+ * - create event
  * - search event
  * - search playlist
  * - search track

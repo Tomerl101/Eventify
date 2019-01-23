@@ -1,2 +1,2 @@
-web: babel-node --presets es2015 index.js
-worker: babel-node --presets es2015 index.js
+web: npm run start
+worker: babel-node index.js

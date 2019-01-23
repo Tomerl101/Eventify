@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "babel-node index.js",
-    "test": "nodemon index1.js"
+    "test": "nodemon --exec babel-node index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-import { eventSchema } from './event.model';
 
 const userSchema = new Schema({
     user_id: { type: String, required: true },
