@@ -46,6 +46,10 @@ app.all('*', (req, res) => {
 // catch error 401 (token expired)
 app.use(function (err, req, res, next) {
   const { status, name, message } = err;
+
+  if (status == 401) {
+    return res.redirect('/');
+  }
   res.status(err.status);
   res.json({ status, name, message });
 });
