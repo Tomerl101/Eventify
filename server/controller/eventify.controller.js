@@ -7,7 +7,8 @@ export const getUserEvents = (req, res, next) => {
     const { user_id = null } = req.body;
 
     User.findOne({ user_id }).populate('events').exec((err, events) => {
-        if (err) return res.status(404).json({ error: 'data not found' })
+        if (err) return res.status(500).json({ error: 'internall error' })
+        if (!events) return res.status(404).json({ error: 'data not found' })
         res.status(200).json(events)
     });
 }
@@ -16,8 +17,8 @@ export const getEventPlaylists = (req, res, next) => {
     const { token, event_id } = req.body;
 
     Event.findOne({ event_id }, (err, event) => {
-        if (err) return res.status(404).json({ error: 'data not found' })
-
+        if (err) return res.status(500).json({ error: 'internal error' })
+        if (!event) return res.status(404).json({ error: 'data not found' })
         const options = {
             url: `${configs.SPOTIFY_URL}me/playlists`,
             auth: { bearer: token },
