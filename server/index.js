@@ -27,7 +27,7 @@ app.get('/callback', auth_ctl.callback);
 
 app.get('/refresh_token', auth_ctl.refreshToken);
 
-// middelware for checking secure routes 
+// checking secure routes 
 app.use(function (req, res, next) {
   if (!req.headers.authorization) {
     return res.status(403).redirect('/');
@@ -42,8 +42,7 @@ app.all('*', (req, res) => {
   res.redirect('/');
 });
 
-// error handling middelware
-// catch error 401 (token expired)
+// error handling 
 app.use(function (err, req, res, next) {
   const { status, name, message } = err;
 

@@ -52,7 +52,7 @@ export const getPlaylistById = async (req, res, next) => {
 export const deleteEventById = (req, res, next) => {
     const { event_id, user_id } = req.body;
 
-    Event.findByIdAndDelete(_id, (err, event) => {
+    Event.findByIdAndDelete(event_id, (err, event) => {
         if (err) return next(ApiError.ServerError);
         if (!event) return next(ApiError.NotFoundError);
     });
