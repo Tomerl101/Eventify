@@ -20,14 +20,14 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+// auth routes
 app.get('/login', auth_ctl.login);
 
 app.get('/callback', auth_ctl.callback);
 
 app.get('/refresh_token', auth_ctl.refreshToken);
 
-// middelware for secure routes 
+// middelware for checking secure routes 
 app.use(function (req, res, next) {
   if (!req.headers.authorization) {
     return res.status(403).redirect('/');

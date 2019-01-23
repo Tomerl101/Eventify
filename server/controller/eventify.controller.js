@@ -1,6 +1,5 @@
 import request from 'request';
 import configs from '../configs';
-// import { parseToken } from '../utils/parseToken';
 const User = require('../models/user.model');
 import { Event } from '../models/event.model';
 
@@ -15,28 +14,41 @@ export const getUserEvents = (req, res, next) => {
 
 export const getEventPlaylists = (req, res, next) => {
     const { token, event_id } = req.body;
-    // Event.find({ event_id }, (err, event) => {
-    //     if (err) return res.status(404).json({ error: 'data not found' })
-    //     res.json(event);
-    // })
 
-    var options = {
-        url: `${configs.SPOTIFY_URL}me/playlists`,
-        auth: { bearer: token },
-        json: true
-    };
+    Event.findOne({ event_id }, (err, event) => {
+        if (err) return res.status(404).json({ error: 'data not found' })
 
-    request.get(options, (error, response, body) => {
-        if (error) {
-            return res.status(500).json({ error });
-        }
+        const options = {
+            url: `${configs.SPOTIFY_URL}me/playlists`,
+            auth: { bearer: token },
+            json: true
+        };
 
-        if (response.statusCode == 401) {
-            console.log('token expired');
-            return res.redirect('/');
-        }
-        res.json(body);
-    });
+        request.get(options, (error, response, body) => {
+            if (error) {
+                return res.status(500).json({ error });
+            }
+
+            if (response.statusCode == 401) {
+                console.log('token expired');
+                return res.redirect('/');
+            }
+
+            if (body) {
+                const { playlists_id: userPlaylists } = event;
+                const { items: playlists } = body;
+
+                const fillterdPlaylists = playlists.filter(pl => {
+                    const playlistUri = pl.uri.split(':')[4];
+                    return userPlaylists.includes(playlistUri)
+                });
+                return res.json(fillterdPlaylists);
+            }
+        });
+    })
+
+
+
 }
 
 export const getPlaylist = (req, res, next) => {

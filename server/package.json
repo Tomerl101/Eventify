@@ -12,8 +12,7 @@
     "mongoose": "5.4.5",
     "morgan": "^1.9.1",
     "querystring": "^0.2.0",
-    "request": "^2.88.0",
-    "spotify-web-api-node": "4.0.0"
+    "request": "^2.88.0"
   },
   "scripts": {
     "start": "babel-node index.js",
