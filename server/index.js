@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import configs from './configs';
 import * as auth_ctl from './controller/auth.controller';
 import eventify from './routes/eventify.routes';
+import db from './db';
 import { parseToken } from './utils/parseToken';
 
 const app = express();
