@@ -9,22 +9,9 @@ import { parseToken } from './utils/parseToken';
 
 const app = express();
 
-// app.use(function (req, res, next) {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-//   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-//   next();
-// });
-
 app.use(cors())
 app.options('*', cors());
 
-// app.use(cors({
-//   origin: true,
-//   credentials: true,
-//   allowedHeaders: ['Origin', 'X-Requested-With', 'contentType', 'Content-Type', 'Accept', 'Authorization'],
-// })) //enable HTTP cookies over CORS
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(morgan('dev'));
@@ -36,7 +23,6 @@ app.get('/login', auth_ctl.login);
 
 app.get('/callback', auth_ctl.callback);
 
-// TODO: in client - check if access token expired and if so ask for refresh token
 app.get('/refresh_token', auth_ctl.refreshToken);
 
 // checking secure routes
