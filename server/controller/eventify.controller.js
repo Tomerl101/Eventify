@@ -5,6 +5,15 @@ import _SpotifyApi from '../api/spotify';
 
 const SpotifyApi = new _SpotifyApi();
 
+export const getUserInfo = async (req, res, next) => {
+    const { token } = req.body;
+
+    const { error, response, body } = await SpotifyApi.getUserInfo(token);
+    if (error) return next(ApiError.ServerError);
+    if (response.statusCode == 401) return next(ApiError.NotAuthoraize);
+    res.status(200).json(body);
+}
+
 export const getUserEvents = (req, res, next) => {
     const { user_id = null } = req.body;
 

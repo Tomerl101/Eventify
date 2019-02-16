@@ -9,14 +9,16 @@ import { parseToken } from './utils/parseToken';
 
 const app = express();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Headers: *");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "x-requested-with, Content-Type, origin, authorization, accept, client-security-token");
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+//   next();
+// });
 
-
+app.use(cors())
+app.options('*', cors());
 
 // app.use(cors({
 //   origin: true,
@@ -28,12 +30,6 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-
-
-
-// express jwt?
-
 
 // auth routes
 app.get('/login', auth_ctl.login);

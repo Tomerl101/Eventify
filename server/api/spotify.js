@@ -2,6 +2,21 @@ import request from 'request';
 import configs from '../configs';
 
 export default class SpotifyApi {
+
+  async getUserInfo(token) {
+    const options = {
+      url: `${configs.SPOTIFY_URL}me`,
+      auth: { bearer: token },
+      json: true
+    };
+
+    return new Promise(function (resolve, reject) {
+      request.get(options, (error, response, body) => {
+        resolve({ error, response, body });
+      })
+    })
+  }
+
   async getUserPlaylists(token) {
     const options = {
       url: `${configs.SPOTIFY_URL}me/playlists`,

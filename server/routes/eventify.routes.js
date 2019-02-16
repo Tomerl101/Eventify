@@ -3,6 +3,7 @@ const router = express.Router();
 
 const eventify_ctl = require('../controller/eventify.controller');
 
+router.post('/getUserInfo', eventify_ctl.getUserInfo);
 router.post('/getUserEvents', eventify_ctl.getUserEvents);
 router.post('/getEventPlaylists', eventify_ctl.getEventPlaylists);
 router.post('/getPlaylistById', eventify_ctl.getPlaylistById);
