@@ -84,9 +84,15 @@ export const deleteEventById = (req, res, next) => {
 
 export const createEvent = (req, res, next) => {
     try {
+        const { user_id } = req.body
         const event = new Event(req.body);
+
+        User.findOne({ user_id }, async function (err, doc) {
+            let userEvents = doc.events;
+            userEvents.push(event._id);
+            await doc.save();
+        });
         event.save((err, event) => {
-            console.log(err.message);
             if (err) return next(new ApiError(err.message).ServerError);
             return res.json(event);
         });
