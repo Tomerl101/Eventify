@@ -5,7 +5,9 @@
   <title>Example of the Implicit Grant flow with Spotify</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <style type="text/css">
-    #login,
+    @import url('https://fonts.googleapis.com/css?family=Righteous');
+
+
     #loggedin {
       display: none;
     }
@@ -16,14 +18,53 @@
       white-space: nowrap;
       width: 500px;
     }
+
+    body {
+      display: flex;
+      background-image: url("https://i.imgur.com/2RhKJDp.jpg");
+      background-color: #cccccc;
+      background-size: 100% 100%;
+      height: 100vh;
+      font-family: 'Righteous', cursive;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .title {
+      color: white;
+      font-size: 96px;
+    }
+
+    .loginBtn {
+      color: #fff;
+      background-color: #42ca55;
+      border-color: #13202b;
+      font-size: 22px;
+    }
+
+    .loginBtn:hover {
+      background-color: #3fea00;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <div id="login">
-      <h1>This is an example of the Implicit Grant flow</h1>
-      <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
+      <h1 class='title'>Eventify</h1>
+      <button id="login-button" class="btn btn-primary loginBtn">Log in with Spotify</button>
     </div>
     <div id="loggedin">
       <div id="user-profile">
